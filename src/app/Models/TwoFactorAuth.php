@@ -16,7 +16,8 @@ use Illuminate\Database\Eloquent\Model;
 class TwoFactorAuth extends Model
 {
     protected $table = 'two_factor_auth';
-    protected $fillable = ['user_id', 'secret'];
+    protected $fillable = ['user_id', 'secret', 'setup_confirmed_at'];
+    protected $dates = ['setup_confirmed_at'];
 
     public function setSecretAttribute(string $value): void
     {

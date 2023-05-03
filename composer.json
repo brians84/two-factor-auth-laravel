@@ -1,5 +1,5 @@
 {
-  "name": "maurohmartinez/two-factor-auth-laravel",
+  "name": "brians84/two-factor-auth-laravel",
   "description": "A package to handle 2FA authentication",
   "type": "library",
   "require": {
@@ -20,6 +20,10 @@
     {
       "name": "maurohmartinez",
       "email": "maurohmartinez@gmail.com"
+    },
+    {
+      "name": "brians84",
+      "email": "brian@clicksmash.com"
     }
   ],
   "minimum-stability": "dev",

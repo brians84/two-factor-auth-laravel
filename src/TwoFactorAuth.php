@@ -82,6 +82,17 @@ class TwoFactorAuth
         Session::remove(config('two_factor_auth.user_secret_key'));
     }
 
+    public function getUserTwoFactorAuthConfirmed(?Authenticatable $user): Builder|Model|null
+    {
+        return !$user
+            ? null
+            : TwoFactorAuthModel::query()
+                ->where('user_id', $user->id)
+                ->whereNotNull('setup_confirmed_at')
+                ->first();
+    }
+
+
     public function getUserTwoFactorAuthSecret(?Authenticatable $user): Builder|Model|null
     {
         return !$user
@@ -91,11 +102,11 @@ class TwoFactorAuth
                 ->first();
     }
 
-    public function updateOrCreateUserSecret(string $userSecret)
+    public function updateOrCreateUserSecret(string $userSecret, $setup_confirmed_at = NULL)
     {
         TwoFactorAuthModel::updateOrCreate(
             ['user_id' => Auth::guard(config('two_factor_auth.guard'))->user()->id],
-            ['secret' => $userSecret],
+            ['secret' => $userSecret, 'setup_confirmed_at' => $setup_confirmed_at]
         );
     }
 }

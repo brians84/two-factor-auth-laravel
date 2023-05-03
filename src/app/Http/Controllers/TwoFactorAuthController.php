@@ -65,8 +65,7 @@ class TwoFactorAuthController extends Controller
 
             return Redirect::back()->withErrors(['error' => __('two_factor_auth::form.error_msg')]);
         }
-
-        $this->twoFactorAuth->updateOrCreateUserSecret($userSecret);
+        $this->twoFactorAuth->updateOrCreateUserSecret($userSecret, date('Y-m-d H:i:s'));
         $this->twoFactorAuth->handleRemember();
         $this->google2FA->login();
 

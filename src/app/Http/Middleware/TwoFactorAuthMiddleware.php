@@ -32,7 +32,9 @@ class TwoFactorAuthMiddleware
                 return $next($request);
             }
 
-            if (!app(TwoFactorAuth::class)->getUserTwoFactorAuthSecret($user)) {
+
+            if (!app(TwoFactorAuth::class)->getUserTwoFactorAuthSecret($user) || (!app(TwoFactorAuth::class)->getUserTwoFactorAuthConfirmed($user) )) {
+                
                 return Redirect::route('two_factor_auth.setup');
             }
 
