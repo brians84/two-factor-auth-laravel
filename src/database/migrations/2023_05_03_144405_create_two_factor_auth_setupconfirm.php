@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('two_factor_auth', function (Blueprint $table) {
-            $table->dateTime('setup_confirmed_at');
+            $table->dateTime('setup_confirmed_at')->nullable();
         });
     }
 
